@@ -34,7 +34,11 @@ jobs:
             antoniomourao/rotten-potatoes:${{ github.run_number }}
 
   CD:
-    - name: Kubernetes set context
-      uses: Azure/k8s-set-context@v1.1
-      with:
-        kubeconfig: ${{ secrets.KUBERNETES_CONFIG }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v1.1
+        with:
+          kubeconfig: ${{ secrets.KUBERNETES_CONFIG }}
