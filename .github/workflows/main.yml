@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  CA:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,3 +33,8 @@ jobs:
             antoniomourao/rotten-potatoes:latest
             antoniomourao/rotten-potatoes:${{ github.run_number }}
 
+  CD:
+    - name: Kubernetes set context
+      uses: Azure/k8s-set-context@v1.1
+      with:
+        kubeconfig: ${{ secrets.KUBERNETES_CONFIG }}
